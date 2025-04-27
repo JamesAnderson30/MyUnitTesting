@@ -37,7 +37,7 @@ namespace Order_App1.tests
         [Test]
         public void Process_OutOfStock_ThrowsOutOfStockException()
         {
-            var order = new Order { Sku = "XYZ", Quantity = 5, CustomerEmail = "you@here.com" };
+            var order = new Order { Sku = "XYZ", Quantity = 11, CustomerEmail = "you@here.com" };
             _invMock.Setup(i => i.IsInStock(order.Sku, order.Quantity)).Returns(false);
 
             Assert.Throws<OutOfStockException>(() => _processor.Process(order));
@@ -46,7 +46,7 @@ namespace Order_App1.tests
         [Test]
         public void Process_OutOfStock_DoesNotReserveOrSendEmail()
         {
-            var order = new Order { Sku = "XYZ", Quantity = 5, CustomerEmail = "you@here.com" };
+            var order = new Order { Sku = "XYZ", Quantity = 11, CustomerEmail = "you@here.com" };
             _invMock.Setup(i => i.IsInStock(order.Sku, order.Quantity)).Returns(false);
 
             Assert.Throws<OutOfStockException>(() => _processor.Process(order));
